@@ -22,6 +22,7 @@ module Api
 				if product.type == 'pizza'
 					product.add_pizza_params item[:cheese_type], item[:border_type], item[:sauce_type], item[:size]
 					add_toppings product, item[:extra_toppings]
+					product.slices = item[:slices] if !item[:slices].nil? 
 					order_item.extend(OrderPizzaItem)
 				else
 					order_item.extend(OrderRegularItem)

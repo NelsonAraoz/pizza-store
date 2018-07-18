@@ -16,6 +16,7 @@ class Pizza < Product
 		@sauce_type = sauce_type.to_sym
 		@extra_toppings = []
 		@size = size.to_sym
+		@slices = SIZES[@size][:slices]
 	end
 
 	def cheese_type=(str)
@@ -44,7 +45,6 @@ class Pizza < Product
 
 	def size=(str)
 		size = SIZES[str]
-		@slices = size[:slices]
 		@size = str if !size.nil?
 	end
 
