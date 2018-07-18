@@ -10,6 +10,14 @@ class Pizza < Product
 		'pizza'
 	end
 
+	def add_pizza_params(cheese_type, border_type, sauce_type,size)
+		@cheese_type = cheese_type.to_sym
+		@border_type = border_type.to_sym
+		@sauce_type = sauce_type.to_sym
+		@extra_toppings = []
+		@size = size.to_sym
+	end
+
 	def cheese_type=(str)
 		@cheese_type = CHEESES.index(str)
 	end
@@ -41,7 +49,7 @@ class Pizza < Product
 	end
 
 	def size
-		SIZES[@size]
+		@size
 	end
 
 	def price
@@ -50,12 +58,18 @@ class Pizza < Product
 
 	def prepare
 		ingredients
+		select_options
 		bake
 		cut
 		box
 		complete
 	end
-
+	def select_options
+		puts "cheese: #{@cheese_type}"
+		puts "sauce: #{@sauce_type}"
+		puts "border type: #{@border_type}"
+		puts "size: #{@size}"
+	end
 	def bake
 		puts "Baking #{@name}, Baking time: #{@preparation_time}"
 	end
